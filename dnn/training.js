@@ -125,7 +125,7 @@ async function deleteOldFiles(generation) {
       let finnishedCount = 0;
       for(let j = 0; j < parallelCount; ++j) {
         try {
-          var child = exec(`node ${DIR}\\dnn\\trainingExecutor.js ${seedFile} ${MUTATION_RATE} ${currentGeneration} ${i+j} ${ITERATION_LIMIT}`, {cwd: DIR});
+          var child = exec(`node ${DIR}/dnn/trainingExecutor.js ${seedFile} ${MUTATION_RATE} ${currentGeneration} ${i+j} ${ITERATION_LIMIT}`, {cwd: DIR});
           child.on('exit', function() {
             ++finnishedCount;
           })
