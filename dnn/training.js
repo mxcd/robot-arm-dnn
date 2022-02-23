@@ -29,6 +29,8 @@ const latestGeneration = generations.length === 0 ? 0 : Math.max(...generations)
 
 let currentGeneration = latestGeneration;
 
+const DIR = process.cwd()
+
 async function loadPopulation(generation) {
   const population = readdirSync(`./generations/${generation}/`, { withFileTypes: true })
     .filter(f => f.isFile())
@@ -123,7 +125,7 @@ async function deleteOldFiles(generation) {
       let finnishedCount = 0;
       for(let j = 0; j < parallelCount; ++j) {
         try {
-          var child = exec(`node C:\\Users\\mapa\\github\\robot-arm-dnn\\dnn\\trainingExecutor.js ${seedFile} ${MUTATION_RATE} ${currentGeneration} ${i+j} ${ITERATION_LIMIT}`, {cwd: 'C:\\Users\\mapa\\github\\robot-arm-dnn'});
+          var child = exec(`node ${DIR}\\dnn\\trainingExecutor.js ${seedFile} ${MUTATION_RATE} ${currentGeneration} ${i+j} ${ITERATION_LIMIT}`, {cwd: DIR});
           child.on('exit', function() {
             ++finnishedCount;
           })
